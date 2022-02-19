@@ -154,25 +154,25 @@ const FreelancerListScreen = (props) => {
                     <View style={{ flex: 1, justifyContent: "center" }}>
                         <ActivityIndicator size="large" />
                     </View>
-                ) : null}
-
-                <FlatList
-                    contentContainerStyle={{ paddingVertical: 10, flexGrow: 1 }}
-                    showsVerticalScrollIndicator={false}
-                    data={filteredList}
-                    renderItem={({ item }) => (
-                        <FreelancerCard data={item} onPress={navigateToDetailsScreen(item)} />
-                    )}
-                    extraData={refreshing}
-                    refreshControl={<RefreshControl
-                        colors={["#9Bd35A", "#689F38"]}
-                        refreshing={refreshing}
-                        onRefresh={refreshList}
+                ) : (
+                    <FlatList
+                        contentContainerStyle={{ paddingVertical: 10, flexGrow: 1 }}
+                        showsVerticalScrollIndicator={false}
+                        data={filteredList}
+                        renderItem={({ item }) => (
+                            <FreelancerCard data={item} onPress={navigateToDetailsScreen(item)} />
+                        )}
+                        extraData={refreshing}
+                        refreshControl={<RefreshControl
+                            colors={["#9Bd35A", "#689F38"]}
+                            refreshing={refreshing}
+                            onRefresh={refreshList}
+                        />
+                        }
+                        keyExtractor={(item) => item.id}
+                        ListEmptyComponent={renderEmptyList()}
                     />
-                    }
-                    keyExtractor={(item) => item.id}
-                    ListEmptyComponent={renderEmptyList()}
-                />
+                )}
             </View>
 
             <RBSheet
